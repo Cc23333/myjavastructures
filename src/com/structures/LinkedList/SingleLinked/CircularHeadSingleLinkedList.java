@@ -29,6 +29,7 @@ public class CircularHeadSingleLinkedList<T> implements ILinkedList<T> {
 
     public CircularHeadSingleLinkedList(){
         //初始化头节点和尾指针
+
         this.head = new Node<T>(null);
         this.head.next = head;
         this.tail = head;
@@ -284,7 +285,7 @@ public class CircularHeadSingleLinkedList<T> implements ILinkedList<T> {
         }
         return false;
     }
-    
+
     @Override
     public String toString()
     {
