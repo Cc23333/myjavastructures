@@ -96,6 +96,9 @@ public class HeadDoubleLinkedList<T> implements ILinkedList<T> {
     public T get(int index) {
         if (index > 0) {
             int j = 0;
+            //注意起始结点为this.head.next
+            //如果起始点为this.head时，j的判断为j<=index，
+            //因为需要寻找的是当前结点而不是前一个结点。
             DNode<T> pre = this.head.next;
             while (pre != null && j < index) {
                 j++;

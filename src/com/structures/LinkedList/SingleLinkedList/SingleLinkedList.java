@@ -1,4 +1,4 @@
-package com.structures.LinkedList.SingleLinked;
+package com.structures.LinkedList.SingleLinkedList;
 
 import com.structures.LinkedList.ILinkedList;
 
