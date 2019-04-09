@@ -295,8 +295,9 @@ public class CircularHeadSingleLinkedList<T> implements ILinkedList<T> {
         {
             str += p.data.toString();
             p = p.next;
-            if (p!=head)
+            if (p!=head){
                 str += ", ";
+            }
         }
         return str+")";
     }

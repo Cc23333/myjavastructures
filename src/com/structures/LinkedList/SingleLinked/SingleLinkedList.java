@@ -1,7 +1,6 @@
 package com.structures.LinkedList.SingleLinked;
 
 import com.structures.LinkedList.ILinkedList;
-import sun.rmi.server.InactiveGroupException;
 
 /**
  * @program: javastructures
