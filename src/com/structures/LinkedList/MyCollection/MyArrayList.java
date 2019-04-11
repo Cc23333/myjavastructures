@@ -293,6 +293,13 @@ public class MyArrayList<T> implements Serializable, IList<T>, Iterable<T> {
         return new Itr();
     }
 
+    /**
+     * @Description: 迭代器Itr
+     * @Param:
+     * @return:
+     * @Author: Cc.
+     * @Date: 19-4-10 下午3:24
+     */
     private class Itr implements Iterator<T>{
 
         /**
