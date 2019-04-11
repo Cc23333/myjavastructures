@@ -1,4 +1,4 @@
-package com.structures.Queue;
+package com.structures.queue;
 
 import java.io.Serializable;
 import java.util.NoSuchElementException;

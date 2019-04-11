@@ -1,4 +1,4 @@
-package com.structures.Queue;
+package com.structures.queue;
 
 /**
  * @program: myjavastructures
