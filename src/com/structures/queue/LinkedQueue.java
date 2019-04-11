@@ -1,5 +1,7 @@
 package com.structures.queue;
 
+import com.structures.linkedlist.singlelinkedlist.Node;
+
 import java.io.Serializable;
 
 /**
