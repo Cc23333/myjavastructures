@@ -1,4 +1,4 @@
-package com.structures.LinkedList.MyCollection;
+package com.structures.linkedlist.mycollection;
 
 import java.io.Serializable;
 import java.util.ConcurrentModificationException;
@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 
 /**
  * @program: myjavastructures
- * @description: 改良的双链表（带头节点和尾节点）类似java集合类 LinkedList
+ * @description: 改良的双链表（带头节点和尾节点）类似java集合类 linkedlist
  * @author: Cc.
  * @create: 2019-04-10 19:59
  **/

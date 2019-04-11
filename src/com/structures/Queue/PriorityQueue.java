@@ -1,6 +1,6 @@
 package com.structures.Queue;
 
-import com.structures.LinkedList.MyCollection.SortMyLinkedList;
+import com.structures.linkedlist.mycollection.SortMyLinkedList;
 
 import java.io.Serializable;
 

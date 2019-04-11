@@ -1,4 +1,4 @@
-package com.structures.LinkedList.DoubleLinkedList;
+package com.structures.linkedlist.doublelinkedlist;
 
 /**
  * @program: myjavastructures

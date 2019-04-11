@@ -1,6 +1,6 @@
-package com.structures.Stack;
+package com.structures.stack;
 
-import com.structures.LinkedList.MyCollection.MyArrayList;
+import com.structures.linkedlist.mycollection.MyArrayList;
 
 import java.io.Serializable;
 import java.util.EmptyStackException;

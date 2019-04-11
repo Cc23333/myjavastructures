@@ -1,6 +1,6 @@
-package com.structures.LinkedList.SingleLinkedList;
+package com.structures.linkedlist.singlelinkedlist;
 
-import com.structures.LinkedList.ILinkedList;
+import com.structures.linkedlist.ILinkedList;
 
 /**
  * @program: javastructures

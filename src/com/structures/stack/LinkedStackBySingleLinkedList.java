@@ -1,6 +1,6 @@
-package com.structures.Stack;
+package com.structures.stack;
 
-import com.structures.LinkedList.SingleLinkedList.SingleLinkedList;
+import com.structures.linkedlist.singlelinkedlist.SingleLinkedList;
 
 import java.io.Serializable;
 import java.util.EmptyStackException;

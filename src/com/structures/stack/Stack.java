@@ -1,4 +1,4 @@
-package com.structures.Stack;
+package com.structures.stack;
 
 /**
  * @program: myjavastructures

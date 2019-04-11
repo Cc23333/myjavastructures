@@ -1,7 +1,5 @@
 package com.structures.Queue;
 
-import com.structures.Stack.SeqStack;
-
 import java.io.Serializable;
 import java.util.NoSuchElementException;
 

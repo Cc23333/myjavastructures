@@ -1,6 +1,6 @@
-package com.structures.LinkedList.SingleLinkedList;
+package com.structures.linkedlist.singlelinkedlist;
 
-import com.structures.LinkedList.ILinkedList;
+import com.structures.linkedlist.ILinkedList;
 
 /**
  * @program: javastructures
@@ -363,7 +363,7 @@ public class SingleLinkedList<T> implements ILinkedList<T> {
     /*public static void main(String[] args){
 
         String[] letters={"A","B","C","D","E","F"};
-        ILinkedList<String> list=new SingleLinkedList<>(letters);
+        ILinkedList<String> list=new singlelinkedlist<>(letters);
 
         System.out.println("list.get(3)->"+list.get(3));
         System.out.println("list:"+list.toString());

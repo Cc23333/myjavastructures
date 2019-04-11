@@ -1,4 +1,4 @@
-package com.structures.Stack;
+package com.structures.stack;
 
 import java.io.Serializable;
 import java.util.EmptyStackException;

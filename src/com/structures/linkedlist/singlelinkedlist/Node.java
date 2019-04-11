@@ -1,4 +1,4 @@
-package com.structures.LinkedList.SingleLinkedList;
+package com.structures.linkedlist.singlelinkedlist;
 
 /**
  * @program: javastructures

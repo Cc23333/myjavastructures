@@ -1,4 +1,4 @@
-package com.structures.LinkedList.MyCollection;
+package com.structures.linkedlist.mycollection;
 
         import java.io.Serializable;
         import java.util.ConcurrentModificationException;

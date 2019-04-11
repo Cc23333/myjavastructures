@@ -1,4 +1,4 @@
-package com.structures.LinkedList.XORLinkedList;
+package com.structures.linkedlist.xorlinkedlist;
 
 /**
  * @program: myjavastructures

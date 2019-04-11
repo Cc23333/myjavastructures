@@ -1,4 +1,4 @@
-package com.structures.LinkedList;
+package com.structures.linkedlist;
 
 /**
  * @program: javastructures

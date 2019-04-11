@@ -1,6 +1,6 @@
-package com.structures.LinkedList.DoubleLinkedList;
+package com.structures.linkedlist.doublelinkedlist;
 
-import com.structures.LinkedList.ILinkedList;
+import com.structures.linkedlist.ILinkedList;
 
 /**
  * @program: myjavastructures

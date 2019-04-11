@@ -1,6 +1,6 @@
-package com.structures.LinkedList.SeqList;
+package com.structures.linkedlist.seqlist;
 
-import com.structures.LinkedList.ISeqList;
+import com.structures.linkedlist.ISeqList;
 
 
 /**
