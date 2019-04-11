@@ -117,7 +117,7 @@ public class PriorityQueue<T extends Comparable<? extends T>> implements Queue<T
     public void clearQueue() {
         this.list.clear();
     }
-    //测试
+    /*//测试
     public static void main(String[] args){
         PriorityQueue<Process> priorityQueue=new PriorityQueue<>(false);
 
@@ -132,5 +132,5 @@ public class PriorityQueue<T extends Comparable<? extends T>> implements Queue<T
             System.out.println("process:"+priorityQueue.poll().toString());
         }
 
-    }
+    }*/
 }

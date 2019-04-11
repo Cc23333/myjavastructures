@@ -1,5 +1,8 @@
 package com.structures.tree;
 
+import com.structures.queue.LinkedQueue;
+import com.structures.stack.LinkedStack;
+
 /**
  * @program: javastructures
  * @description: 二叉搜索树
@@ -141,7 +144,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
                 p = p.left;
             }else{  //若 p==null 栈不为空，则说明已沿左子树访问完一条路径，从栈中弹出栈顶结构，并访问其右孩子
                 //获取已访问过的节点记录
-                p = satck.pop();
+                p = stack.pop();
                 p = p.right;
             }
         }
@@ -264,7 +267,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         StringBuffer sb = new StringBuffer();
         
         //构建用于存放节点的栈
-        LinkedStack<BinaryNode<T>> stack = new LinkedStack<BinaryNOde<T>>();
+        LinkedStack<BinaryNode<T>> stack = new LinkedStack<BinaryNode<T>>();
         
         BinaryNode<T> currentNode = this.root;
         BinaryNode<T> prev = this.root;
@@ -549,7 +552,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     @Override
     public T findMax() {
         if(isEmpty()){
-            throw new EmptyTreeException("BinarySearchTree is empty!");
+            throw new RuntimeException("BinarySearchTree is empty!");
         }
 
         return findMax(root).data;
@@ -558,7 +561,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     @Override
     public T findMin() {
         if(isEmpty()){
-            throw new EmptyTreeException("BinarySearchTree is empty!");
+            throw new RuntimeException("BinarySearchTree is empty!");
         }
 
         return findMin(root).data;
