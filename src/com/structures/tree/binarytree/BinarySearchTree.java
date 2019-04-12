@@ -1,7 +1,11 @@
-package com.structures.tree;
+package com.structures.tree.binarytree;
 
 import com.structures.queue.LinkedQueue;
 import com.structures.stack.LinkedStack;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @program: javastructures
@@ -24,9 +28,105 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         this.root = null;
     }
 
+    public BinarySearchTree(T[] pList, T[] inList, boolean isPreOder){
+        if(pList == null || inList == null){
+            throw new RuntimeException();
+        }
+        if(isPreOder){
+            //先根/中根次序构建二叉树
+            this.root = createBinarySearchTreeByPreIn(pList, inList, 0, pList.length-1, 0, inList.length-1);
+        }else{
+            //后根/中根次序构建二叉树
+            this.root = createBinarySearchTreeByPostIn(pList, inList, 0, pList.length-1, 0, inList.length -1);
+        }
+    }
+
+    /**
+     * @Description: 根据先根和中根遍历算法构造二叉树
+     * @Param: [preList 先根遍历次序数组, inList 中根次序遍历数组, preStart, preEnd, inStart, inEnd]
+     * @return: com.structures.tree.binarytree.BinaryNode<T> 最终返回根节点
+     * @Author: Cc.
+     * @Date: 19-4-12 下午12:02
+     */
+    public BinaryNode<T> createBinarySearchTreeByPreIn(T[] preList, T[] inList, int preStart, int preEnd, int inStart, int inEnd){
+        //preList[preStart]必须根节点数据，创建根节点root
+        BinaryNode<T> p = new BinaryNode<T>(preList[preStart]);
+        //如果没有其他元素，说明节点构建已完成
+        if(preStart == preEnd && inStart == inEnd){
+            return p;
+        }
+        //找出中根次序的根节点下标root
+        int root = 0;
+        for(root=inStart; root < inEnd; root++){
+            //如果中根次序中的元素值与先根次序的根节点相当，则该下标index即为inList中的根节点下标
+            if(preList[preStart].compareTo(inList[root]) == 0){
+                break;
+            }
+        }
+
+        //获取左子树的长度
+        int leftLength = root - inStart;
+        //获取右子树的长度
+        int rightLength = inEnd - root;
+
+        //递归构建左子树
+        if(leftLength > 0){
+            //左子树的先根序列 preList[1],...,preList[i]
+            //左子树的中根序列 inList[0],...,inList[i-1]
+            p.left = createBinarySearchTreeByPreIn(preList, inList, preStart+1, preStart+leftLength, inStart, root-1);
+        }
+        //构建右子树
+        if(rightLength > 0){
+            //右子树的先根序列 preList[i+1],...,preList[n-1]
+            //右子树的中根序列 inList[i+1],...,inList[n-1]
+            p.right = createBinarySearchTreeByPreIn(preList, inList, preStart+leftLength+1, preEnd, root+1, inEnd);
+        }
+        return p;
+    }
+
+    /**
+     * @Description: 后根和中根遍历算法构建erchs
+     * @Param: [postList, inList, postStart, postEnd, inStart, inEnd]
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
+     * @Author: Cc.
+     * @Date: 19-4-12 下午12:03
+     */
+    public BinaryNode<T> createBinarySearchTreeByPostIn(T[] postList, T[] inList, int postStart, int postEnd, int inStart, int inEnd){
+        //构建根节点
+        BinaryNode<T> p = new BinaryNode<T>(postList[postEnd]);
+        if(postStart==postEnd && inStart==inEnd){
+            return p;
+        }
+        //查找中根序列的根节点下标root
+        int root = 0;
+        for(root=inStart; root < inEnd; root++){
+            //查找到
+            if(postList[postEnd].compareTo(inList[root]) == 0){
+                break;
+            }
+        }
+
+        //左子树的长度
+        int leftLength = root - inStart;
+        //右子树的长度
+        int rightLength = inEnd - root;
+
+        //递归构建左子树
+        if(leftLength > 0){
+            //postStart+leftLength-1 后根左子树的结束下标
+            p.left = createBinarySearchTreeByPostIn(postList, inList, postStart, postStart+leftLength-1, inStart, root-1);
+        }
+
+        //递归构建右子树
+        if(rightLength > 0){
+            p.right = createBinarySearchTreeByPostIn(postList, inList, postStart+leftLength, postEnd-1, root+1, inEnd);
+        }
+        return p;
+    }
+
     @Override
     public boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
     /**
@@ -350,7 +450,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     /**
      * @Description: 插入操作，递归实现
      * @Param: [data, p]
-     * @return: com.structures.tree.BinaryNode<T>
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
      * @Author: Cc.
      * @Date: 2019/4/5
      */
@@ -390,7 +490,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
      *               2.删除用于一个孩子节点的节点（可能是左孩子也可能是右孩子）
      *               3.删除拥有两个孩子的节点的节点
      * @Param: [data, p]
-     * @return: com.structures.tree.BinaryNode<T>
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
      * @Author: Cc.
      * @Date: 2019/4/5
      */
@@ -523,7 +623,7 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     /**
      * @Description: 查找中继节点--右子树最小值节点
      * @Param: [delNode]
-     * @return: com.structures.tree.BinaryNode<T>
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
      * @Author: Cc.
      * @Date: 2019/4/5
      */
@@ -567,10 +667,31 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
         return findMin(root).data;
     }
 
+    @Override
+    public BinaryNode findNode(T data) {
+        return findNode(data, root);
+    }
+
+    private BinaryNode<T> findNode(T data,BinaryNode<T> p){
+
+        if (p==null||data==null){
+            return null;
+        }
+        //计算比较结果
+        int compareResult=data.compareTo(p.data);
+
+        if (compareResult<0){//从左子树查找
+            return findNode(data,p.left);
+        }else if(compareResult>0){//从右子树查找
+            return findNode(data,p.right);
+        }else {//match
+            return p;
+        }
+    }
     /**
      * @Description: 查找最大值节点
      * @Param: [p]
-     * @return: com.structures.tree.BinaryNode<T>
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
      * @Author: Cc.
      * @Date: 2019/4/5
      */
@@ -595,17 +716,182 @@ public class BinarySearchTree<T extends Comparable> implements Tree<T> {
     }
 
     @Override
-    public BinaryNode findNode(T data) {
-        return null;
-    }
-
-    @Override
     public boolean contains(T data) throws Exception {
-        return false;
+        return contains(data, root);
+    }
+    private boolean contains(T data,BinaryNode<T> p) {
+
+        if (p==null||data==null){
+            return false;
+        }
+
+        //计算比较结果
+        int compareResult=data.compareTo(p.data);
+        //如果小于0,从左子树遍历
+        if(compareResult<0){
+            return contains(data,p.left);
+        }else if(compareResult>0){
+            return contains(data,p.right);
+        }else {
+            return true;   //match
+        }
     }
 
     @Override
     public void clear() {
+        root = null;
+    }
+
+    private void printTree( BinaryNode t )
+    {
+        if( t != null )
+        {
+            printTree( t.left );
+            System.out.println( t.data );
+            printTree( t.right );
+        }
+    }
+
+    /**
+     *
+     * 将树转换成字符串并打印在控制台上，用L表示左孩子，R表示右孩子
+     */
+    public void print() {
+        LinkedList<BinaryNode<T>> tree = getCompleteBinaryTree();
+        //获取树的深度
+        int depth = height();
+        Iterator<BinaryNode<T>> iterator = tree.iterator();
+
+        int maxPosition = 1;
+
+        for (int floor = 1; floor <= depth; floor++) { // 层数，从1开始
+            maxPosition = 1 << (floor - 1);//左移相当于1*2^(floor-1)
+
+            //输出元素前需要打印的空白符
+            //左移相当于1*2^( depth - floor ) - 1
+            printBlank((1 << (depth - floor)) - 1);
+
+            //开始打印元素
+            for (int position = 0; position < maxPosition; position++) {
+                if (iterator.hasNext()) {
+                    BinaryNode<T> node = iterator.next();
+                    if (node != null) {
+                        System.out.print(node.data);
+                    } else {
+                        System.out.print(" ");
+                    }
+                    //再次打印间隔空白符
+                    printBlank((1 << (depth - floor + 1)) - 1);
+                }
+            }
+            //换行
+            System.out.println();
+
+        }
+    }
+    /**
+     * 打印空白
+     * @param length
+     */
+    private void printBlank(int length) {
+        while (length-- > 0) {
+            System.out.print(" ");
+        }
+    }
+
+    /**
+     * @Description:  将二叉树用空节点补充称完全二叉树，并以水平遍历形式返回
+     * @Param: []
+     * @return: java.util.LinkedList<com.structures.tree.binarytree.BinaryNode<T>>
+     * @Author: Cc.
+     * @Date: 19-4-12 下午12:54
+     */
+    private LinkedList<BinaryNode<T>> getCompleteBinaryTree(){
+        Queue<BinaryNode<T>> queue = new LinkedList<BinaryNode<T>>();
+        LinkedList<BinaryNode<T>> tree = new LinkedList<>();//把树补成完全二叉树，放在这个链表中
+        queue.add(root);
+        BinaryNode<T> empty = null;
+        int nodeCount = 1;//队列中非空节点数
+        while(queue.size() >0 && nodeCount >0){
+            BinaryNode<T> node = queue.remove();
+            if(node != null){
+                nodeCount--;
+                tree.add(node);
+                BinaryNode<T> left = node.left;
+                BinaryNode<T> right = node.right;
+                if(left == null){
+                    queue.add(empty);
+                }else{
+                    queue.add(left);
+                    nodeCount++;
+                }
+                if(right == null){
+                    queue.add(empty);
+                }else{
+                    queue.add(right);
+                    nodeCount++;
+                }
+            }else{
+                tree.add(empty);
+                queue.add(empty);
+                queue.add(empty);
+            }
+        }
+        return tree;
+    }
+
+    /**
+     * 测试
+     * @param args
+     */
+    public static void main(String args[])
+    {
+        Integer pre[] = {1,2,4,7,3,5,8,9,6};
+        Integer in[]  = {4,7,2,1,8,5,9,3,6};
+
+        String[] preList={"A","B","D","G","C","E","F","H"};
+        String[] inList={"D","G","B","A","E","C","H","F"};
+        String[] postList={"G","D","B","E","H","F","C","A"};
+        /**
+         * 先根遍历:A,B,D,G,C,E,F,H
+         * 中根遍历:D,G,B,A,E,C,H,F
+         * 后根遍历:G,D,B,E,H,F,C,A
+         */
+        //先根/中根
+//        BinarySearchTree<String> cbtree = new BinarySearchTree<>(preList,inList,true);
+        //后根/中根
+        BinarySearchTree<String> cbtree = new BinarySearchTree<>(postList,inList,false);
+//        BinarySearchTree<String> cbtree = new BinarySearchTree<>();
+//        cbtree.printTree(cbtree.root);
+//        BinarySearchTree<Integer> cbtree = new BinarySearchTree<>();
+//        cbtree.insert(10);
+//        cbtree.insert(40);
+//        cbtree.insert(2);
+//        cbtree.insert(90);
+//        cbtree.insert(11);
+//        cbtree.insert(9);
+//        cbtree.insert(30);
+//        cbtree.insert("A");
+//        cbtree.insert("B");
+//        cbtree.insert("C");
+//        cbtree.insert("D");
+//        cbtree.insert("E");
+//        cbtree.insert("F");
+        System.out.println("先根遍历:"+cbtree.preOrder());
+//        System.out.println("非递归先根遍历:"+cbtree.preOrderTraverse());
+        System.out.println("中根遍历:"+cbtree.inOrder());
+//        System.out.println("非递归中根遍历:"+cbtree.inOrderTraverse());
+        System.out.println("后根遍历:"+cbtree.postOrder());
+//        System.out.println("非递归后根遍历:"+cbtree.postOrderTraverse());
+//        System.out.println("查找最大结点(根据搜索二叉树):"+cbtree.findMax());
+//        System.out.println("查找最小结点(根据搜索二叉树):"+cbtree.findMin());
+//        System.out.println("判断二叉树中是否存在E:"+cbtree.contains("E"));
+//        System.out.println("删除的结点返回根结点:"+cbtree.remove("E",cbtree.root).data);
+//
+//        System.out.println("findNode->"+cbtree.findNode("D",cbtree.root).data);
+//        System.out.println("删除E结点:先根遍历:" + cbtree.preOrder());
+        System.out.println("树的结构如下:");
+        cbtree.print();
 
     }
 }

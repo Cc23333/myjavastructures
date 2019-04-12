@@ -1,4 +1,4 @@
-package com.structures.tree;
+package com.structures.tree.binarytree;
 
 import com.structures.queue.LinkedQueue;
 
@@ -35,7 +35,7 @@ public class CompleteBinaryTree<T extends Comparable> extends BinarySearchTree<T
     /**
      * @Description: 层次遍历构造完全二叉树
      * @Param: [levelOrderArray, i]
-     * @return: com.structures.tree.BinaryNode<T>
+     * @return: com.structures.tree.binarytree.BinaryNode<T>
      * @Author: Cc.
      * @Date: 2019/4/11
      */

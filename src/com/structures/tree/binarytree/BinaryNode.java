@@ -1,4 +1,4 @@
-package com.structures.tree;
+package com.structures.tree.binarytree;
 
 import java.io.Serializable;
 
